@@ -1,7 +1,7 @@
 module.exports = [
     /**
      * YOU CAN ADD OR REMOVE SKILLS AS YOU WANT
-     * TO REMOVE JUST DELETE THE ID AND JOB INCLUDING { },
+     * TO REMOVE YOU NEED TO DELETE THE GROUP AND JOB INCLUDING { },
      */
     // Deadly Gamble
     {

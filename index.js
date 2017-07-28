@@ -1,10 +1,10 @@
 /**
- * Version: 0.1.0
+ * Version: 0.1.1
  * Made by Loggeru
  */
 
 const LAIN_ID = 80081,                          // Lein's Dark Root Beer ID
-    DELAY = 200,                                // How much time in miliseconds should wait after buff
+    DELAY = 200,                                // How much time in miliseconds should wait after buff (seconds * 1000)
     NOTIFICATIONS = true;                       // true - Activates notification when you drink / false - Deactivates
 
 /**
@@ -67,6 +67,8 @@ module.exports = function LetMeDrink(dispatch) {
     });
 
     dispatch.hook('C_START_SKILL', 3, { order: -10 }, (event) => {
+        if (!enabled) return;
+        
         let sInfo = getSkillInfo(event.skill);
         for (s = 0; s < skills.length; s++) {
             if (skills[s].group == sInfo.group && skills[s].job == oJob && isCdDrink == false && qtdDrink > 0) {
