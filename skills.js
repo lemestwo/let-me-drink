@@ -24,4 +24,9 @@ module.exports = [
         group: 12,
         job: 12
     },
+    // Blood Lust
+    {
+        group: 21,
+        job: 3
+    },
 ]

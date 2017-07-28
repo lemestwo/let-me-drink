@@ -1,6 +1,6 @@
 # let-me-drink
 
-Version: 0.1.2
+Version: 0.1.3
 
 Auto 'Lein's Dark Root Beer' module for Tera Proxy
 
@@ -15,6 +15,7 @@ If you find any bug just let me know.
     * Mana Boost
     * Shadow Reaping
     * Ragnarok
+    * 
     * Can add/remove in 'skills.js' file
  * Will only try to use if you have one or more beer in inventory
  * Can look in 'index.js' file to change:
@@ -27,6 +28,10 @@ If you find any bug just let me know.
 /proxy letmedrink (Toggle the module on/off)
 /proxy getskillinfo (see above)
 ```
+
+## Recent updates
+ * Support for Zerk buff
+ * Command to get skill info
 
 ## How to get new skills information
  * Use the 'getskillinfo' command
