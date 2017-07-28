@@ -1,6 +1,6 @@
 # let-me-drink
 
-Version: 0.1.1
+Version: 0.1.2
 
 Auto 'Lein's Dark Root Beer' module for Tera Proxy
 
@@ -25,4 +25,11 @@ If you find any bug just let me know.
 **Need to be used in _Proxy Channel_ (/proxy)**
 ```
 /proxy letmedrink (Toggle the module on/off)
+/proxy getskillinfo (see above)
 ```
+
+## How to get new skills information
+ * Use the 'getskillinfo' command
+ * See if it show the message: 'Use the desired skill and check proxy console.'
+ * Use any skill you want in-game
+ * See proxy console to get your infos

@@ -1,5 +1,5 @@
 /**
- * Version: 0.1.1
+ * Version: 0.1.2
  * Made by Loggeru
  */
 
@@ -26,12 +26,18 @@ module.exports = function LetMeDrink(dispatch) {
         oW = null,
         qtdDrink = 0,
         idDrink = null,
-        isCdDrink = false;
+        isCdDrink = false,
+        getInfoCommand = false;
 
     command.add('letmedrink', () => {
         enabled = !enabled;
         let txt = (enabled) ? 'ENABLED' : 'DISABLED';
         message('Let me Drink is ' + txt, true);
+    });
+
+    command.add('getskillinfo', () => {
+        getInfoCommand = true;
+        message('Use the desired skill and check proxy console.', true);
     });
 
     dispatch.hook('S_LOGIN', 2, (event) => {
@@ -68,8 +74,14 @@ module.exports = function LetMeDrink(dispatch) {
 
     dispatch.hook('C_START_SKILL', 3, { order: -10 }, (event) => {
         if (!enabled) return;
-        
+
         let sInfo = getSkillInfo(event.skill);
+
+        if (getInfoCommand) {
+            message('Skill info: (group: ' + sInfo.group + ' / job: ' + oJob + ')');
+            getInfoCommand = false;
+        }
+
         for (s = 0; s < skills.length; s++) {
             if (skills[s].group == sInfo.group && skills[s].job == oJob && isCdDrink == false && qtdDrink > 0) {
                 useItem();

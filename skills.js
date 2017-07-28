@@ -1,6 +1,7 @@
 module.exports = [
     /**
      * YOU CAN ADD OR REMOVE SKILLS AS YOU WANT
+     * USE THE 'getskillinfo' COMMAND TO GET SKILL INFO
      * TO REMOVE YOU NEED TO DELETE THE GROUP AND JOB INCLUDING { },
      */
     // Deadly Gamble
