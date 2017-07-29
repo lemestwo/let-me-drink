@@ -29,4 +29,9 @@ module.exports = [
         group: 21,
         job: 3
     },
+    // Adrenaline Rush
+    {
+        group: 17,
+        job: 1
+    },
 ]
