@@ -1,5 +1,5 @@
 /**
- * Version: 0.1.3
+ * Version: 0.1.5
  * Made by Loggeru
  */
 
@@ -40,26 +40,26 @@ module.exports = function LetMeDrink(dispatch) {
         message('Use the desired skill and check proxy console.', true);
     });
 
-    dispatch.hook('S_LOGIN', 2, (event) => {
-        oCid = event.cid;
-        oJob = (event.model - 10101) % 100;
+    dispatch.hook('S_LOGIN', 10, (event) => {
+        oCid = event.gameId;
+        oJob = (event.templateId - 10101) % 100;
     });
 
-    dispatch.hook('C_PLAYER_LOCATION', 1, { order: -10 }, (event) => {
-        oX = (event.x1 + event.x2) / 2;
-        oY = (event.y1 + event.y2) / 2;
-        oZ = (event.z1 + event.z2) / 2;
+    dispatch.hook('C_PLAYER_LOCATION', 5, { order: -10 }, (event) => {
+        oX = (event.loc.x + event.dest.x) / 2;
+        oY = (event.loc.y + event.dest.y) / 2;
+        oZ = (event.loc.z + event.dest.z) / 2;
         oW = event.w;
     });
 
-    dispatch.hook('S_INVEN', 5, { order: -10 }, (event) => {
+    dispatch.hook('S_INVEN', 12, { order: -10 }, (event) => {
         if (!enabled) return;
 
         let tempInv = event.items;
         for (i = 0; i < tempInv.length; i++) {
-            if (tempInv[i].item == LAIN_ID) {
+            if (tempInv[i].id == LAIN_ID) {
                 qtdDrink = tempInv[i].amount;
-                idDrink = tempInv[i].uid.low;
+                idDrink = tempInv[i].dbid;
                 break;
             }
         }
@@ -72,7 +72,7 @@ module.exports = function LetMeDrink(dispatch) {
         }
     });
 
-    dispatch.hook('C_START_SKILL', 3, { order: -10 }, (event) => {
+    dispatch.hook('C_START_SKILL', 5, { order: -10 }, (event) => {
         if (!enabled) return;
 
         let sInfo = getSkillInfo(event.skill);
@@ -92,25 +92,19 @@ module.exports = function LetMeDrink(dispatch) {
 
     function useItem() {
         setTimeout(function () {
-            dispatch.toServer('C_USE_ITEM', 1, {
-                ownerId: oCid,
-                item: LAIN_ID,
-                id: idDrink,
+            dispatch.toServer('C_USE_ITEM', 3, {
+                gameId: oCid,
+                id: LAIN_ID,
+                dbid: idDrink,
+                target: 0,
+                amount: 1,
+                dest: {x: 0, y: 0, z: 0},
+                loc: {x: oX, y: oY, z: oZ},
+                w: oW,
                 unk1: 0,
                 unk2: 0,
                 unk3: 0,
-                unk4: 1,
-                unk5: 0,
-                unk6: 0,
-                unk7: 0,
-                x: oX,
-                y: oY,
-                z: oZ,
-                w: oW,
-                unk8: 0,
-                unk9: 0,
-                unk10: 0,
-                unk11: 1
+                unk4: 1
             });
             isCdDrink = true;
             qtdDrink--;
