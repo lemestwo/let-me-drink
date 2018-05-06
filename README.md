@@ -1,6 +1,6 @@
 # let-me-drink
 
-Version: 0.1.4
+Version: 0.1.5
 
 Auto 'Lein's Dark Root Beer' module for Tera Proxy
 
